@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7156c50ef7.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>UI/UX 요구분석 평가 - 장태훈</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        #wra{
+            margin: 0 auto;
+            margin-top: 10px;
+            width: 1200px;
+            display: grid;
+            grid-template-columns: 590px 590px;
+            grid-template-rows: 290px 590px 590px 590px 590px 590px 600px ;
+            row-gap: 20px;
+            column-gap: 20px;
+        }
+        section{
+            background: white;
+            box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.342);
+            overflow: hidden;
+        }
+        section>h1>a{
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        section>h1>a:hover{
+            color: #ffcbf4;
+        }
+        section>ul{
+            list-style: none;
+            position: relative;
+        }
+        section>ul>li{
+            position: relative;
+        }
+        section>ul>li::before{
+            content: "";
+            width: 570px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 10px;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.151);
+            pointer-events: none;
+        }
+        section>ul>li>a{
+            padding: 10px;
+            width: 590px;
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            font-weight: 300;
+            transition: 0.3s;
+        }
+        #gal{
+            list-style: none;
+            position: relative;
+        }
+        #gal>li{
+            margin-top: 30px;
+        }
+        #gal>li>a{
+            width: 190px;
+            float: left;
+            margin-left: 5px;
+            margin-bottom: 40px;
+            text-decoration: none;
+            color: black;
+        }
+        #gal>li>a>img{
+            width: 190px;
+            height: 190px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        #gal>li>a:hover{
+            background: rgba(0, 0, 0, 0.055);
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+        }
+        section>ul>li>a:hover{
+            background: rgba(0, 0, 0, 0.055);
+        }
+        section>h1{
+            width: 100%;
+            color:white;
+            background: linear-gradient(90deg ,#d22eb2,#0c72c7 );
+            padding-left: 20px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        #banner{
+            grid-column-start: 1;
+            grid-column-end: 3;
+            position: relative;
+            width: 1200px;
+            height: 290px;
+            overflow: hidden;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.349);
+        }
+        #banner>ol{
+            list-style: none;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            
+        }
+        #banner>ol>li{
+            position: absolute;
+            top: 0;
+            width: 1200px;
+            height: 290px;
+        }
+        #btopimg{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #bbottomimg{
+            position: absolute;
+            top: 150px;
+            left: 0;
+        }
+        #blimg{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #brimg{
+            position: absolute;
+            top: 0;
+            left: 600px;
+        }
+        #banner>ol>li:nth-child(0)
+        {
+            left: 0;
+        }
+        #banner>ol>li:nth-child(1)
+        {
+            left: 1200px;
+        }
+        #banner>ol>li:nth-child(2)
+        {
+            left: 2400px;
+        }
+        #square-banner{
+            width: 590px;
+            height: 590px;
+            position: relative;
+            overflow: hidden;
+            background: none;
+            box-shadow: none;
+        }
+        #square-banner>ol{
+            list-style: none;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        #square-banner>ol>li{
+            display: grid;
+            grid-template-columns: 290px 290px;
+            grid-template-rows: 290px 290px;
+            row-gap: 10px;
+            column-gap: 10px;
+            position: absolute;
+            top: 0;
+        }
+        #square-banner>ol>li>a:hover>img{
+            width: 300px;
+            height: 300px;
+            transform: translate(-5px,-5px);
+        }
+        #square-banner>ol>li:nth-child(0)
+        {
+            left: 0;
+        }
+        #square-banner>ol>li:nth-child(1)
+        {
+            left: 590px;
+        }
+        #square-banner>ol>li:nth-child(2)
+        {
+            left: 1180px;
+        }
+        #square-banner>ol>li:nth-child(3)
+        {
+            left: 1770px;
+        }
+        #square-banner>ol>li>a{
+            color: black;
+            text-decoration: none;
+            width: 290px;
+            height: 290px;
+            overflow: hidden;
+        }
+        #square-banner>ol>li>a>img{
+            width: 290px;
+            height: 290px;
+            transition: 0.3s;
+        }
+
+
+
+    </style>
+
+
+
+    <script>
+
+
+
+    $(document).ready(function() {
+		let sbanner = $("#square-banner").find("ol");
+        let banner = $("#banner").find("ol");
+
+		let sbannerWidth = sbanner.children().outerWidth();//이미지의 폭
+		let sbannerHeight = sbanner.children().outerHeight(); // 높이
+		let slength = sbanner.children().length;//이미지의 갯수
+		let rollingId;
+        let bannerWidth = banner.children().outerWidth();//이미지의 폭
+		let bannerHeight = banner.children().outerHeight(); // 높이
+		let blength = banner.children().length;//이미지의 갯수
+
+		//정해진 초마다 함수 실행
+		rollingsId = setInterval(function() { rollingsbanner(); }, 6000);//다음 이미지로 롤링 애니메이션 할 시간차
+    
+		function rollingsbanner() {
+			sbanner.css("width", sbannerWidth * slength + "px");
+			sbanner.css("height", sbannerHeight + "px");
+            banner.css("width", bannerWidth * blength + "px");
+			banner.css("height", bannerHeight + "px");
+			//alert(bannerHeight);
+			//배너의 좌측 위치를 옮겨 준다.
+			sbanner.animate({left: - sbannerWidth + "px"}, 1500, function() { //숫자는 롤링 진행되는 시간이다.
+				//첫번째 이미지를 마지막 끝에 복사(이동이 아니라 복사)해서 추가한다.
+				$(this).append("<li>" + $(this).find("li:first").html() + "</li>");
+				//뒤로 복사된 첫번재 이미지는 필요 없으니 삭제한다.
+				$(this).find("li:first").remove();
+				//다음 움직임을 위해서 배너 좌측의 위치값을 초기화 한다.
+				$(this).css("left", 0);
+				//이 과정을 반복하면서 계속 롤링하는 배너를 만들 수 있다.
+			});
+            banner.animate({left: - bannerWidth + "px"}, 1500, function() { //숫자는 롤링 진행되는 시간이다.
+				//첫번째 이미지를 마지막 끝에 복사(이동이 아니라 복사)해서 추가한다.
+				$(this).append("<li>" + $(this).find("li:first").html() + "</li>");
+				//뒤로 복사된 첫번재 이미지는 필요 없으니 삭제한다.
+				$(this).find("li:first").remove();
+				//다음 움직임을 위해서 배너 좌측의 위치값을 초기화 한다.
+				$(this).css("left", 0);
+				//이 과정을 반복하면서 계속 롤링하는 배너를 만들 수 있다.
+			});
+		}
+	}); 
+
+    </script>
+</head>
+<body>
+    <div id="wra">
+
+        <div id="banner">
+            <ol>
+                <li>
+                    
+                    <a href="#"><img src="img/banner/1-top.jpg" id="btopimg" alt=""></a>
+                    <a href="#"><img src="img/banner/1-bottom.jpg" id="bbottomimg" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/banner/2-left.jpg" id="blimg" alt=""></a>
+                    <a href="#"><img src="img/banner/2-right.jpg" id="brimg" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/banner/3.jpg" alt=""></a>
+                </li>
+            </ol>
+        </div>
+
+        <section>
+            <h1><a href="market.html" target="_self">악기장터</a></h1>
+            <ul>
+                <li><a href="market.html">멕펜 플레이어(Mexico fender player) 스트랫 바디 판매합니다.</a></li>
+                <li><a href="market.html">*연주첨부*세미할로우 텔레캐스터 일렉기타</a></li>
+                <li><a href="market.html">PRS SE CUSTOM 22 SEMI-HOLLOW Korea 판매</a></li>
+                <li><a href="market.html">볼캔 코어사운드 레스폴 연습용 6.5만</a></li>
+                <li><a href="market.html">크래프터 Kgae 27 아이유 기타</a></li>
+                <li><a href="market.html">초초급매)페달보드 교환 및 일괄 판매</a></li>
+                <li><a href="market.html">빠른판매 위해 ㅠ) 아이바네즈 rg2550z 던컨 픽업 업글</a></li>
+                <li><a href="market.html">크런치마스터 v2판매합니다</a></li>
+                <li><a href="market.html">(판/교)PRS CU22 1997 리피니쉬 리프렛 custom 22</a></li>
+                <li><a href="market.html">알레시스 전자드럼 니트로 메쉬킷 alesis nitro mesh</a></li>
+                <li><a href="market.html">레비스 스트랩, 코로나 클립튜너, 케이블 2개 일괄 판매</a></li>
+            </ul>
+        </section>
+
+        <section id="square-banner">
+            <ol>
+                <li>
+                    <a href="#"><img src="img/square/01.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/02.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/03.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/04.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/square/05.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/06.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/07.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/08.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/square/09.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/10.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/11.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/12.jpg" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/square/13.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/14.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/15.jpg" alt=""></a>
+                    <a href="#"><img src="img/square/16.jpg" alt=""></a>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h1><a href="notice.html" target="_self">뮬인</a></h1>
+            <ul>
+                <li><a href="notice.html">[잡썰] 경찰서 방문해서 진정서 접수했네요</a></li>
+                <li><a href="notice.html">오래 오래 신나는..</a></li>
+                <li><a href="notice.html">제임스 타일러 전문가분들께 여쭙습니다!! (포텐셔미터 배선 관련)</a></li>
+                <li><a href="notice.html">Nux gp-1 재추첨결과</a></li>
+                <li><a href="notice.html">캠퍼 앰프 사이트 회원가입이 안되는데 혹시 방법아시는분 계신가요?</a></li>
+                <li><a href="notice.html">페달트레인 클래식 jr 정도의 페달보드</a></li>
+                <li><a href="notice.html">첫 페달보드 구성 질문입니다!</a></li>
+                <li><a href="notice.html">헤드러쉬vs힐릭스lt</a></li>
+                <li><a href="notice.html">감사합니다 뮬지기님!!</a></li>
+                <li><a href="notice.html">야마하... 당신의 정체성은 무엇입니까...</a></li>
+                <li><a href="notice.html">이펙터 초보의 이펙터 여행</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h1><a href="notice.html" target="_self">갤러리</a></h1>
+            <ol id="gal">
+                <li>
+                    <a href="notice.html">
+                        <img src="img/gal/1.jpg" alt="근본 에피폰 호텔 시리즈 !!!">
+                        <br>근본 에피폰 호텔 시리즈 !!!
+                    </a>
+                </li>
+                <li>
+                    <a href="notice.html">
+                        <img src="img/gal/2.jpg" alt="PRS 식구가 늘었습니다.">
+                        <br>PRS 식구가 늘었습니다.
+                    </a>
+                </li>
+                <li>
+                    <a href="notice.html">
+                        <img src="img/gal/3.jpg" alt="베이스 초보의 두번째 베이스">
+                        <br>베이스 초보의 두번째 베이스
+                    </a>
+                </li>
+                <li>
+                    <a href="notice.html">
+                        <img src="img/gal/4.jpg" alt="다음 작업 예고편입니다">
+                        <br>다음 작업 예고편입니다
+                    </a>
+                </li>
+                <li>
+                    <a href="notice.html">
+                        <img src="img/gal/5.jpg" alt="희귀조합 길모어 X 피쉬맨 SSH">
+                        <br>희귀조합 길모어 X 피쉬맨 SSH
+                    </a>
+                </li>
+                <li>
+                    <a href="notice.html">
+                        <img src="img/gal/6.jpg" alt="첫 8현이자 마지막 8현">
+                        <br>첫 8현이자 마지막 8현
+                    </a>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h1><a href="notice.html" target="_self">자작곡</a></h1>
+            <ul>
+                <li><a href="notice.html">묵은거 상하기전에...</a></li>
+                <li><a href="notice.html">뉴진스 느낌 90s 힙합비트</a></li>
+                <li><a href="notice.html">안녕하세요 하고 있는 밴드의 뮤직비디오가 나왔습니다.</a></li>
+                <li><a href="notice.html">비오는 분위기 팝비트 만들어봤습니다.</a></li>
+                <li><a href="notice.html">자기전에 비트듣고 바로 만든 알앤비입니다 한번 맛보고가세요!</a></li>
+                <li><a href="notice.html">[cover] Ed Sheeran - Shivers</a></li>
+                <li><a href="notice.html">국빈관진상들이라는 팀입니다 곡 하나 만들어 봤습니다^^</a></li>
+                <li><a href="notice.html">NBA Young Boy 타입 피아노 트랩 비트 "ALL MINE"</a></li>
+                <li><a href="notice.html">급식송</a></li>
+                <li><a href="notice.html">왕초보가 만들어본 피아노곡입니다!</a></li>
+                <li><a href="notice.html">무한으로 즐겨주세요 제 노래</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h1><a href="notice.html" target="_self">주간베스트</a></h1>
+            <ul>
+                <li><a href="notice.html">((나눔)) 색이넘이뻐서구매^^ 그리고 nux gp-1 나눔</a></li>
+                <li><a href="notice.html">고장난 페달 나눔 (추첨완료)</a></li>
+                <li><a href="notice.html">뮬지기님!! 정치/논쟁 게시판 탭 위치 바꿔주세요.</a></li>
+                <li><a href="notice.html">크런치박스 나눔합니다-</a></li>
+                <li><a href="notice.html">드디어 제 닉네임과 소원(목표)를 이루었네요! 기타 구매!!</a></li>
+                <li><a href="notice.html">자 팩폭 나갑니다^^</a></li>
+                <li><a href="notice.html">영빈관엔 수백억..초등돌봄 과일간식 예산 전액 삭감</a></li>
+                <li><a href="notice.html">근본 에피폰 호텔 시리즈 !!!</a></li>
+                <li><a href="notice.html">뮬린이의 기타 소개글(?)</a></li>
+                <li><a href="notice.html">블랙핑크 로제가 쓰는 기타중에 하나</a></li>
+                <li><a href="notice.html">스쿨뮤직 기본 사은품</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h1><a href="info.html" target="_self">구인/구직</a></h1>
+            <ul>
+                <li><a href="info.html">[믹싱&튠]믹싱,튠 작업합니다.</a></li>
+                <li><a href="info.html">전남 무안 JS음악학원 기타선생님 구합니다</a></li>
+                <li><a href="info.html">가요 스트링 편곡____데모 음원의 퀄리티를 높이세요!</a></li>
+                <li><a href="info.html">[ 위드피아노 노원점 프리랜서 강사 모집 ]</a></li>
+                <li><a href="info.html">[온라인 기타 레코딩 세션] 당일제작가능</a></li>
+                <li><a href="info.html">(주말/심야)홍대,합정 합주실에서 함께 일할분을 모집합니다</a></li>
+                <li><a href="info.html">[보컬튠] 깔끔하고 정확한 튠, 최상의 퀄리티를 보여드립니다!</a></li>
+                <li><a href="info.html">앨범제작 더이상 고민하지 마세요!!! 여기 최저가로 만드세요!!</a></li>
+                <li><a href="info.html">** 누구나 밴드 -- 상시 모집중 ** 1</a></li>
+                <li><a href="info.html">((울산))기타,키보드님 구합니다!!</a></li>
+                <li><a href="info.html">송파 취미밴드 드럼, 베이스 구해요</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h1><a href="info.html" target="_self">공연/대회</a></h1>
+            <ul>
+                <li><a href="info.html">써밋플레이 제4회 리믹스 콘테스트 개최 "어드밴스드"</a></li>
+                <li><a href="info.html">제20회 조인핸드 청소년가요제</a></li>
+                <li><a href="info.html">제1회 콜텍문화재단 밴드경연대회 콘서트</a></li>
+                <li><a href="info.html">[코지라이브] 오늘 밤 10시 유튜브 무료 공연 진행됩니다!</a></li>
+                <li><a href="info.html">공연팀 모집</a></li>
+                <li><a href="info.html">2022.10.22(Sat) Metal Collection Vol.10</a></li>
+                <li><a href="info.html">안녕하세요 할로윈때 서울 공연팀 모십니다.</a></li>
+                <li><a href="info.html">부평문화의거리 청년르네상스 동아리 페스티벌!</a></li>
+                <li><a href="info.html">10월 15일 토요일 볼 만한 인디공연 메타 콘서트!</a></li>
+                <li><a href="info.html">일산 시장살리기 프로젝트 공연 뮤지션을 섭외합니다 (페이有)</a></li>
+                <li><a href="info.html">[울산] 말로밴드 공연 22.10.28 (금) 8pm</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h1><a href="edu.html" target="_self">개인레슨</a></h1>
+            <ul>
+                <li><a href="edu.html">영상음악, 영화음악을 배우고 싶은 분들을 위한 레슨</a></li>
+                <li><a href="edu.html">[서울대입구역] 이적, 정세운 등 대중음악, OST 작, 편곡 레슨합니다.</a></li>
+                <li><a href="edu.html">“한달한곡 프로젝트" 9월 곡 공개!</a></li>
+                <li><a href="edu.html">(당산)(보컬,싱어송)개인 레슨 [무료상담] [현역 아티스트]</a></li>
+                <li><a href="edu.html">가수&작곡가 [디알로1:1레슨]논현역,연습실제공[영상첨부]</a></li>
+                <li><a href="edu.html">[Producing]시온/라붐/위키미키/SF9/디핵/조승연/그리즐리</a></li>
+                <li><a href="edu.html">AOMG ELO(엘로) 송라이팅,레코딩 레슨합니다</a></li>
+                <li><a href="edu.html">🟥🟪월15만원 작편곡레슨,믹싱/마스터링레슨 진행합니다️️🟥🟪</a></li>
+                <li><a href="edu.html">[합정역30초] 기타 1대1 레슨 초보,취미가능 믹스&마스터링레슨</a></li>
+                <li><a href="edu.html">[합정] 현 퍼블리셔 소속 작곡가, 미디/작곡 레슨</a></li>
+                <li><a href="edu.html">강남 역삼 미디레슨 / 큐베이스 / FLstudio / 작곡 / 편곡</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h1><a href="edu.html" target="_self">강좌</a></h1>
+            <ul>
+                <li><a href="edu.html">ITZY(있지) - SNEAKERS 808베이스 사운드 메이킹(with 세럼)</a></li>
+                <li><a href="edu.html">1강 - 음계는 뭐고 조표는 어떻게 외워요? / 김선호의 음악노트</a></li>
+                <li><a href="edu.html">유튜브 기타 독학 큐레이션 (입문)</a></li>
+                <li><a href="edu.html">F blues와 재즈 릭 응용하기입니다.</a></li>
+                <li><a href="edu.html">천재 작곡가 모차르트가 제일 많이 했던 '이것'</a></li>
+                <li><a href="edu.html">임피던스</a></li>
+                <li><a href="edu.html">컴프레서는 소스마다 골라 써야합니다.</a></li>
+                <li><a href="edu.html">KPOP에 자주 쓰이는 펑키한 베이스 사운드 만들기(with 세럼)</a></li>
+                <li><a href="edu.html">펜타토닉 외웠는데 어떻게 써먹나요? 함께 배워 봅시다!</a></li>
+                <li><a href="edu.html">손목터널증후군 보다 더 무서운 손목교차증후군…</a></li>
+                <li><a href="edu.html">사운드 카피의 접근법</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h1><a href="shop.html" target="_self">뉴스</a></h1>
+            <ul>
+                <li><a href="shop.html">써미온 "제로" 풀 스테레오 기타앰프 출시</a></li>
+                <li><a href="shop.html">네덜란드 guk.ai사의 ‘Sistema’: AI 기반 소프트웨어 신디사이저</a></li>
+                <li><a href="shop.html">[Nash Guitars] JB-63 내쉬 베이스 기타 (커스텀 오더)</a></li>
+                <li><a href="shop.html">[Nash Guitars] PB-57 내쉬 베이스 기타 (커스텀 오더)</a></li>
+                <li><a href="shop.html">녹음부터 음원 발매까지 45만원에!?</a></li>
+                <li><a href="shop.html">알앤비 음악과 디제잉의 콜라보레이션</a></li>
+                <li><a href="shop.html">[SQUIER] 40주년 기념 골드 에디션 프레시전 베이스</a></li>
+                <li><a href="shop.html">[SQUIER] 40주년 기념 골드 에디션 재즈 베이스</a></li>
+                <li><a href="shop.html">[SQUIER] 40주년 기념 골드 에디션 재즈마스터</a></li>
+                <li><a href="shop.html">[SQUIER] 40주년 기념 골드 에디션 텔레캐스터</a></li>
+                <li><a href="shop.html">[SQUIER] 40주년 기념 골드 에디션 스트라토캐스터</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h1><a href="shop.html" target="_self">포인트몰</a></h1>
+            <ul>
+                <li><a href="shop.html">[추첨식(외부)]올해도 션기타와 함께! Sean - T Standard b급</a></li>
+                <li><a href="shop.html">[즉시구매] 어니볼 Super Slinky Nickel [2221] (010-046) 22.10분</a></li>
+                <li><a href="shop.html">[즉시구매] 어니볼 Super Slinky Nickel [2223] (009-042) 22.10분</a></li>
+                <li><a href="shop.html">[추첨식(외부)] 스윙협찬) Swing - FV1 베이스기타 BK</a></li>
+                <li><a href="shop.html">[추첨식] 뮬회원 사모님 전용 이마트 모바일 금액권 (시리즈1 - 2회차)</a></li>
+                <li><a href="shop.html">[추첨식] 인앤아웃 협찬! 블랙스미스 프렛 폴리싱 크림 M25</a></li>
+                <li><a href="shop.html">[추첨식(외부)] 스윙협찬) 스윙 S-2 Plus SE TBL</a></li>
+                <li><a href="shop.html">[추첨식] 인앤아웃 협찬! LOCK-IT 스트랩 (LIS 050 C2-OLV/BRN)</a></li>
+                <li><a href="shop.html">[추첨식] 인앳아웃 협찬! LOCK-IT 스트랩 LIS 003 P2 - PBLU</a></li>
+                <li><a href="shop.html">[추첨식] 뮬티셔츠 평가단 모집중 (검정,회색,흰색)</a></li>
+                <li><a href="shop.html">[추첨식] 인앤아웃 협찬! LOCK-IT 스트랩 (Retro LIS 063-CB)</a></li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>

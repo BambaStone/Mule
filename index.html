@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7156c50ef7.js" crossorigin="anonymous"></script>
+    <title>UI/UX 요구분석 평가 - 장태훈</title>
+    <style>
+        *{
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 14px;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            background: #dddcdb;
+            font-size: 14px;
+        }
+        iframe{
+            width: 100%;
+        }
+        header{
+            min-width: 1200px;
+            height: 150px;
+            position: relative;
+            background: white;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.301);
+        }
+        header::before{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(90deg ,#d22eb2,#0c72c7 );
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.199);
+        }
+        #topmenu{
+            margin: 0 auto;
+            width: 1200px;
+            height: 150px;
+            position: relative;
+        }
+        header #topmenu #search{
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+        }
+        header #topmenu #search #logo{
+            background-image: url('img/뮬.PNG');
+            display: inline-block;
+            width: 140px;
+            height: 60px;
+            background-position: 50% 50%;
+            background-size: 100%;
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        header #topmenu #search> form> #searchbar >input[type="text"] {
+            width: 250px;
+            background: #ffffff;
+            height: 50px;
+            border: none;
+            outline: none;
+            border-radius: 25px;
+            padding-left: 30px;
+            /* position: relative; */
+            box-shadow: inset 2px 2px 3px rgba(0,0,0,0.5);
+            transition: 0.9s;
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            transform: translateY(-50%);
+            font-size: 18px;
+
+        }
+        header #topmenu #search> form> #searchbar >input[type="text"]:hover,header #topmenu #search> form> #searchbar >input[type="text"]:focus {
+            width: 400px;
+        }
+        header #topmenu #search> form> #searchbar >i {
+            position: absolute;
+            top: 50%;
+            left: 21%;
+            color: #d22eb2;
+            transform: translateY(-50%);
+        }
+
+        header #topmenu #search> form> #searchbar >input[type="text"]::placeholder {
+            font-size: 18px;
+            color: #d22eb156
+        }
+
+        header #topmenu #menu{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+        }
+        header #topmenu #menu #leftmenu{
+            position: absolute;
+            width: 70%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+
+        header #topmenu #search #rightbanner{
+            position: absolute;
+            height: 60%;
+            right: 10px;
+            top: 20%;
+        }
+        header #topmenu #search #rightbanner >a{
+            margin-left: 50px;
+            float: left;
+            height: 100%;
+        }
+        header #topmenu #search #rightbanner >a>img{
+            height: 100%;
+        }
+
+
+        header #topmenu #menu #leftmenu >label{
+            color: black;
+            float: left;
+            height: 100%;
+            width: 20%;
+            text-align: center;
+            cursor: pointer;
+        }
+        header #topmenu #menu #leftmenu > .nomal,header #topmenu #menu #leftmenu > .nomal>i{
+            font-size: 20px;
+            line-height: 45px;
+        }
+        header #topmenu #menu #leftmenu > .shopc{
+            font-size: 20px;
+            line-height: 45px;
+            position: relative;
+            color: white;
+            z-index: 1;
+        }
+        header #topmenu #menu #leftmenu >.shopc::before{
+            position: absolute;
+            content: "";
+            width: 73px;
+            height: 30px;
+            background: linear-gradient(90deg ,#d22eb2,#0c72c7 );
+            top: 5px;
+            left: 50px;
+            z-index: -1;
+        }
+        header #topmenu #menu #leftmenu >.shopc::after{
+            position: absolute;
+            content: "";
+            width: 73px;
+            height: 30px;
+            background: linear-gradient(90deg ,#d22eb2,#0c72c7 );
+            bottom: 5px;
+            right: 50px;
+            z-index: -1;
+        }
+        header #topmenu #menu #leftmenu .menueff{
+            position: absolute;
+            width: 20%;
+            height: 3px;
+            background: linear-gradient(90deg ,#d22eb2,#0c72c7 );
+            bottom: 0;
+            left: -20%;
+            opacity: 1;
+            pointer-events: none;
+            transition: 0.3s;
+        }
+        header #topmenu #menu #leftmenu > input[type="radio"]{
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+        }
+        header #topmenu #menu #leftmenu > #home:checked ~.menueff{
+            left: -200%;
+        }
+        header #topmenu #menu #leftmenu > #market:checked ~.menueff{
+            left: 0%;
+        }
+        header #topmenu #menu #leftmenu > #notice:checked ~.menueff{
+            left: 20%;
+        }
+        header #topmenu #menu #leftmenu > #info:checked ~.menueff{
+            left: 40%;
+        }
+        header #topmenu #menu #leftmenu > #edu:checked ~.menueff{
+            left: 60%;
+        }
+        header #topmenu #menu #leftmenu > #shop:checked ~.menueff{
+            left: 80%;
+        }
+        #menubtn{
+            display: none;
+        }
+        #menubtn+label{
+            overflow: hidden;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            left: 1130px;
+            top: 0;
+        }
+        #menubtn+label>#up{
+            top:-50%;
+            opacity: 0;
+        }
+        #menubtn+label>i{
+            font-size: 30px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            width: 50px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #user{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 1090px;
+            top: 0;
+            color: black;
+        }
+        #user>i{
+            font-size: 25px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            width: 50px;
+        }
+        #menubtn:checked+label>#up{
+            top: 50%;
+            opacity: 1;
+        }
+        #menubtn:checked+label>#baricon{
+            top: 150%;
+            opacity: 0;
+        }
+        #menumore{
+            position: absolute;
+            width: 100%;
+            height: 0;
+            background: white;
+            top: 50px;
+            left: 0;
+            overflow: hidden;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.301),-1px 0px 2px rgba(0, 0, 0, 0.301);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        #menubtn:checked ~ #menumore{
+            height: 200px;
+            opacity: 1;
+        }
+        #menumore>ul{
+            list-style: none;
+            float: left;
+            margin: 0;
+            padding: 0;
+            width: 168px;
+            height: 180px;
+            text-align: center;
+            box-sizing: border-box;
+            border-left: 1px dashed rgba(0, 0, 0, 0.4);
+        }
+        #menumore>ul:first-child{
+            border: none;
+        }
+        #menumore>ul>li{
+            height: 30px;
+            line-height: 30px;
+            transition: 0.3s;
+        }
+        #menumore>ul>li>a{
+            text-decoration: none;
+            color: #d22eb2;
+        }
+        #menumore>ul>li:hover{
+            background: linear-gradient(90deg ,#d22eb2,#0c72c7 );
+        }
+        #menumore>ul>li:hover>a{
+            color: white;
+        }
+
+        footer{
+            background: white;
+            height: 300px;
+        }
+        footer>p{
+            font-size: 18px;
+            width: 1100px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+        footer>p>a{
+            font-size: 18px;
+            color: black;
+            text-decoration: none;
+        }
+
+    </style>
+    <script>
+        function homes(){
+            frames["mains"].location.href='home.html';
+            document.getElementById("home").checked=true;
+        }
+        function markets(){
+            frames["mains"].location.href='market.html';
+        }
+        function notices(){
+            frames["mains"].location.href='notice.html';
+        }
+        function infos(){
+            frames["mains"].location.href='info.html';
+        }
+        function edus(){
+            frames["mains"].location.href='edu.html';
+        }
+        function shops(){
+            frames["mains"].location.href='shop.html';
+        }
+
+        function resize(ifr){
+            ifr.style.height=ifr.contentDocument.body.scrollHeight+'px';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div id="topmenu">
+            <div id="search">
+                <div id="logo" onclick="homes()">
+                </div>
+                <form action="action.php">
+                    <div id="searchbar">
+                        <input type="text" placeholder="검색어를 입력해주세요.">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </form>
+                <div id="rightbanner">
+                    <a href="#">
+                        <img src="img/event.gif" alt="캐쉬이벤트">
+                    </a>
+                </div>
+            </div>
+            <div id="menu">
+                <div id="leftmenu">
+                    <input type="radio" name="tmenu" id="home" checked>
+                    <input type="radio" name="tmenu" id="market" onclick="markets()">
+                    <label for="market" class="nomal">
+                        악기장터
+                    </label>
+
+                    <input type="radio" name="tmenu" id="notice" onclick="notices()">
+                    <label for="notice" class="nomal">
+                        뮬인/게시판
+                    </label>
+
+                    <input type="radio" name="tmenu" id="info" onclick="infos()">
+                    <label for="info" class="nomal">
+                        정보
+                    </label>
+
+                    <input type="radio" name="tmenu" id="edu" onclick="edus()">
+                    <label for="edu" class="nomal">
+                        교육
+                    </label>
+
+                    <input type="radio" name="tmenu" id="shop" onclick="shops()">
+                    <label for="shop" class="shopc">
+                        쇼핑
+                    </label>
+                    <div class="menueff"></div>                    
+                </div>
+                
+                <div id="more">
+                    <a href="#" id="user"><i class="fa-solid fa-user"></i></a>
+                    <input type="checkbox" name="menubtn" id="menubtn">
+                    <label for="menubtn">
+                        <i id="baricon" class="fa-solid fa-bars"></i>
+                        <i id="up" class="fa-solid fa-angle-up"></i>
+                    </label>
+                    <div id="menumore">
+                        <ul id="marketlist">
+                            <li><a href="#">악기장터</a></li>
+                            <li><a href="#">사용기</a></li>
+                        </ul>
+                        <ul id="noticelist">
+                            <li><a href="#">뮬인</a></li>
+                            <li><a href="#">명예의전당</a></li>
+                            <li><a href="#">자유</a></li>
+                            <li><a href="#">갤러리</a></li>
+                            <li><a href="#">동영상</a></li>
+                            <li><a href="#">자작곡</a></li>
+                        </ul>
+                        <ul id="infolist">
+                            <li><a href="">합주실</a></li>
+                            <li><a href="">구인/구직</a></li>
+                            <li><a href="">클럽대관</a></li>
+                            <li><a href="">업체정보</a></li>
+                            <li><a href="">공연/대회</a></li>
+                        </ul>
+                        <ul id="edulist">
+                            <li><a href="">개인레슨</a></li>
+                            <li><a href="">학원</a></li>
+                            <li><a href="">학교</a></li>
+                            <li><a href="">강좌</a></li>
+                        </ul>
+                        <ul id="shoplist">
+                            <li><a href="">투기</a></li>
+                            <li><a href="">포인트몰</a></li>
+                            <li><a href="">뉴스</a></li>
+                            <li><a href="">쇼핑몰</a></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <iframe src="home.html" name="mains" id="mains" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" onload="resize(this)"></iframe>
+
+    <footer>
+        <p>
+            <a href="#">사이트소개</a> |
+            <a href="#">이용약관</a> |
+            <a href="#">개인정보취급방침</a> |
+            <a href="#">책임한계 및 법적고지</a> |
+            <a href="#">이메일수집거부</a> |
+            <a href="#">광고안내</a> |
+            <a href="#">불법자료 신고</a> |
+            <a href="#">불량회원 신고</a>
+        </p>
+        <p>
+        뮬은 본사이트에서 물품을 직접 판매하지 않습니다. 뮬에 등록된 판매물품과 물품의 내용은 판매자가 등록한 것으로 뮬과 뮬의 운영진은 그 등록내용과 상품에 대하여 일체의 책임을 지지 않습니다. 뮬에 등록된 모든 광고의 저작권 및 법적책임은 자료제공사(또는 글쓴이)에게 있으므로 뮬은 광고에 대한 책임을 지지 않습니다. 뮬운영진이 사용하는 아이디는 muleadmin1, muleadmin2, muleadmin3이며 운영진은 회원에게 개별적으로 접촉하지 않습니다.
+        </p>
+        <p>사업자: 120-03-29582 | 상호: 뮬 | 대표자: 송정수 | 소재지: 서울 서초구 남부순환로 2636 501-A38</p>
+        <p>문자: 02-6247-7203 | 이메일: admin@mule.co.kr | 고객지원(광고문의): 플러스친구 mulecs</p>
+    </footer>
+
+</body>
+</html>
